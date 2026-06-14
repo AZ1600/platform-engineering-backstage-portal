@@ -1,13 +1,12 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backstage-portal
-  description: An example of a Backstage application.
-  # Example for optional annotations
-  # annotations:
-  #   github.com/project-slug: backstage/backstage
-  #   backstage.io/techdocs-ref: dir:.
+  name: olawale-platform-engineering-portal
+  description: Internal Developer Platform showcasing Platform Engineering, Cloud Engineering and DevOps projects.
+  annotations:
+    github.com/project-slug: AZ1600/platform-engineering-backstage-portal
+
 spec:
   type: website
-  owner: john@example.com
-  lifecycle: experimental
+  owner: olawale-azeez
+  lifecycle: production
