@@ -79,6 +79,37 @@ This project demonstrates:
 * TechDocs
 
 ---
+## Screenshots
+
+### Backstage Developer Portal
+
+Initial Backstage deployment used to validate the Internal Developer Platform setup.
+
+![Backstage Portal](docs/backstage-homepage.png)
+
+---
+
+### Software Catalog
+
+Customized software catalog containing platform engineering and cloud-native portfolio services.
+
+![Software Catalog](docs/catalog-overview.png)
+
+---
+
+### Service Dependency Graph
+
+Visual representation of service ownership, relationships and platform architecture using the Backstage Catalog Graph.
+
+![Catalog Graph](docs/catalog-graph.png)
+
+---
+
+### Service Entity Example
+
+Example entity registered within the software catalog.
+
+![Entity Page](docs/entity-page.png)
 
 ## Skills Demonstrated
 
