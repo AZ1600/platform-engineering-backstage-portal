@@ -1,0 +1,225 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: platform-engineering
+  title: Platform Engineering
+  description: Internal platforms, cloud infrastructure, developer experience, GitOps, and observability capabilities.
+spec:
+  owner: group:default/platform-team
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: internal-developer-platform
+  title: Internal Developer Platform
+  description: Developer self-service, software catalogue, documentation, Kubernetes visibility, and delivery workflows.
+spec:
+  owner: group:default/platform-team
+  domain: platform-engineering
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: az1600-developer-platform
+  title: AZ1600 Developer Platform
+  description: Backstage-based internal developer portal for service discovery, ownership, templates, documentation, and platform workflows.
+  annotations:
+    github.com/project-slug: AZ1600/platform-engineering-backstage-portal
+  tags:
+    - backstage
+    - platform-engineering
+    - developer-experience
+spec:
+  type: website
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+  consumesApis:
+    - github-api
+    - kubernetes-api
+  dependsOn:
+    - resource:default/eks-cluster
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: gitops-argocd
+  title: GitOps Argo CD Platform
+  description: GitOps deployment platform using Argo CD and Kubernetes.
+  annotations:
+    github.com/project-slug: AZ1600/platform-engineering-gitops-argocd
+  tags:
+    - argocd
+    - gitops
+    - kubernetes
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+  consumesApis:
+    - kubernetes-api
+  dependsOn:
+    - resource:default/eks-cluster
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: observability-platform
+  title: Observability Platform
+  description: Monitoring and observability stack using Prometheus and Grafana.
+  annotations:
+    github.com/project-slug: AZ1600/platform-engineering-observability
+  tags:
+    - prometheus
+    - grafana
+    - observability
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+  providesApis:
+    - monitoring-api
+  dependsOn:
+    - resource:default/prometheus
+    - resource:default/grafana
+    - resource:default/eks-cluster
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: terraform-eks-platform
+  title: Terraform EKS Platform
+  description: AWS and Kubernetes infrastructure provisioned with Terraform.
+  annotations:
+    github.com/project-slug: AZ1600/platform-engineering-terraform-eks
+  tags:
+    - terraform
+    - aws
+    - eks
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+  providesApis:
+    - kubernetes-api
+  dependsOn:
+    - resource:default/eks-cluster
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: github-api
+  title: GitHub API
+  description: GitHub integration used by the developer platform.
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: GitHub Integration API
+      version: 1.0.0
+    paths: {}
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: kubernetes-api
+  title: Kubernetes API
+  description: Kubernetes control-plane API used for deployment and workload visibility.
+  tags:
+    - kubernetes
+    - platform
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Kubernetes Platform API
+      version: 1.0.0
+    paths: {}
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: monitoring-api
+  title: Monitoring API
+  description: Metrics and observability API exposed by the monitoring platform.
+  tags:
+    - prometheus
+    - observability
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Monitoring API
+      version: 1.0.0
+    paths: {}
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: eks-cluster
+  title: Amazon EKS Cluster
+  description: Kubernetes cluster provisioned by the Terraform EKS platform.
+  tags:
+    - aws
+    - eks
+    - kubernetes
+spec:
+  type: kubernetes-cluster
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: prometheus
+  title: Prometheus
+  description: Metrics collection and alerting resource for platform workloads.
+  tags:
+    - prometheus
+    - monitoring
+spec:
+  type: monitoring
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: grafana
+  title: Grafana
+  description: Dashboard and visualisation resource for platform metrics.
+  tags:
+    - grafana
+    - dashboards
+spec:
+  type: dashboard
+  lifecycle: production
+  owner: group:default/platform-team
+  system: internal-developer-platform

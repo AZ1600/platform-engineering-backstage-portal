@@ -101,7 +101,7 @@ Customized software catalog containing platform engineering and cloud-native por
 
 Visual representation of service ownership, relationships and platform architecture using the Backstage Catalog Graph.
 
-![Catalog Graph](docs/catalog-graph.png)
+![Catalog Graph](docs/catalog-architecture.png)
 
 ---
 
@@ -110,6 +110,13 @@ Visual representation of service ownership, relationships and platform architect
 Example entity registered within the software catalog.
 
 ![Entity Page](docs/entity-page.png)
+
+
+## Platform Catalog Architecture
+
+The Backstage Catalog Graph models the relationship between the Platform Engineering domain, the Internal Developer Platform, platform services, APIs, and shared infrastructure resources.
+
+![Platform Catalog Architecture](docs/catalog-architecture.png)
 
 ## Skills Demonstrated
 

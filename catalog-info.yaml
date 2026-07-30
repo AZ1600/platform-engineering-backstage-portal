@@ -1,12 +1,18 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: olawale-platform-engineering-portal
-  description: Internal Developer Platform showcasing Platform Engineering, Cloud Engineering and DevOps projects.
+  name: az1600-developer-platform
+  title: AZ1600 Developer Platform
+  description: Self-service internal developer platform for software discovery, ownership, documentation, templates, and Kubernetes visibility.
+  tags:
+    - backstage
+    - platform-engineering
+    - developer-experience
+    - kubernetes
   annotations:
     github.com/project-slug: AZ1600/platform-engineering-backstage-portal
 
 spec:
   type: website
-  owner: olawale-azeez
+  owner: group:default/platform-team
   lifecycle: production
