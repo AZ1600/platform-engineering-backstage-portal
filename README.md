@@ -1,197 +1,357 @@
-# Platform Engineering Developer Portal
+# AZ1600 Platform Engineering Developer Portal
+
+![Backstage](https://img.shields.io/badge/Platform-Backstage-blue)
+![React](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-blue)
+![Kubernetes](https://img.shields.io/badge/Runtime-Kubernetes-blue)
+![AWS](https://img.shields.io/badge/Cloud-AWS-orange)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-purple)
 
 ## Overview
 
-Internal Developer Platform (IDP) built using Backstage to centralize software catalog management, developer self-service workflows, technical documentation, and platform governance.
+The **AZ1600 Platform Engineering Developer Portal** is an Internal Developer Platform (IDP) built using **Backstage**.
 
-The portal provides a unified interface for developers to discover services, access documentation, manage software components, and accelerate application delivery through standardized platform workflows.
+The platform provides developers with a centralized experience for:
 
-This project demonstrates modern Platform Engineering practices focused on improving developer experience, reducing operational complexity, and enabling self-service infrastructure and application management.
+- Discovering software services
+- Managing ownership and metadata
+- Accessing technical documentation
+- Creating new applications through self-service workflows
+- Understanding platform architecture and dependencies
+- Integrating cloud-native development practices
 
----
-
-## Key Features
-
-* Backstage Software Catalog
-* Service Discovery and Ownership Tracking
-* Internal Developer Portal (IDP)
-* Technical Documentation Management
-* Developer Self-Service
-* Centralized Platform Experience
-* Kubernetes Integration
-* GitHub Integration
-* Platform Governance
-* Extensible Plugin Architecture
+The goal of this platform is to improve developer experience, standardize engineering workflows, and reduce operational complexity through automation.
 
 ---
 
-## Architecture
+# Platform Capabilities
 
-```text
-                    Developers
-                         │
-                         ▼
+## Software Catalog
 
-              Backstage Developer Portal
-                         │
+The Backstage Software Catalog provides a centralized inventory of:
 
-      ┌──────────────────┼──────────────────┐
-      ▼                  ▼                  ▼
+- Applications
+- Services
+- APIs
+- Infrastructure resources
+- Platform components
+- Ownership metadata
 
- Software Catalog   Technical Docs     Templates
+Developers can discover services, understand dependencies, and identify responsible teams.
 
-      ▼                  ▼                  ▼
+---
 
-    GitHub          Documentation      Self-Service
+## Developer Self-Service
 
-                         │
+The platform includes automated software creation workflows using Backstage Scaffolder.
 
-                         ▼
+Developers can:
 
-                 Kubernetes Platform
+- Generate production-ready services
+- Create repositories automatically
+- Register applications in Backstage
+- Apply standardized engineering practices
+
+The golden path workflow includes:
+
+- Application source generation
+- Repository creation
+- Catalog registration
+- Documentation setup
+- Ownership assignment
+
+---
+
+## Kubernetes Platform Integration
+
+The platform is designed for Kubernetes-based workloads.
+
+Capabilities include:
+
+- Kubernetes resource visibility
+- Cloud-native service management
+- Environment awareness
+- Deployment workflow integration
+
+Target infrastructure:
+
+- Amazon Elastic Kubernetes Service (EKS)
+- Terraform-managed infrastructure
+- Kubernetes workloads
+
+---
+
+## Technical Documentation
+
+Documentation is powered by Backstage TechDocs.
+
+Each service can include:
+
+- Architecture documentation
+- Development instructions
+- Operational guides
+- Deployment information
+- Ownership details
+
+---
+
+# Architecture
+
+The AZ1600 Developer Platform follows a modern Internal Developer Platform architecture.
+
+```
+Developers
+     |
+     |
+Backstage Developer Portal
+     |
+     |
+ --------------------------------
+ |              |               |
+Catalog      TechDocs      Scaffolder
+ |              |               |
+Services     Documentation   Templates
+ |
+ |
+Kubernetes / Cloud Infrastructure
 ```
 
 ---
 
-## Platform Engineering Concepts
+# Technology Stack
 
-This project demonstrates:
-
-* Internal Developer Platforms (IDP)
-* Developer Experience (DevEx)
-* Service Catalog Management
-* Platform Governance
-* Software Ownership Tracking
-* Standardized Developer Workflows
-* Kubernetes Platform Integration
-* Self-Service Engineering
-
----
-
-## Technologies Used
-
-* Backstage
-* TypeScript
-* Node.js
-* Docker
-* Kubernetes
-* GitHub
-* TechDocs
-
----
-## Screenshots
-
-### Backstage Developer Portal
-
-Initial Backstage deployment used to validate the Internal Developer Platform setup.
-
-![Backstage Portal](docs/backstage-homepage.png)
+| Area | Technology |
+|---|---|
+| Developer Portal | Backstage |
+| Frontend | React + TypeScript |
+| Backend | Node.js |
+| Database | SQLite |
+| Documentation | TechDocs |
+| Templates | Backstage Scaffolder |
+| Cloud Platform | AWS |
+| Container Platform | Kubernetes |
+| Infrastructure as Code | Terraform |
+| Source Control | GitHub |
+| Observability | Prometheus / Grafana |
+| Deployment | Kubernetes / GitOps Ready |
 
 ---
 
-### Software Catalog
+# Repository Structure
 
-Customized software catalog containing platform engineering and cloud-native portfolio services.
-
-![Software Catalog](docs/catalog-overview.png)
+```
+.
+├── packages/
+│   ├── app/              # Backstage frontend application
+│   └── backend/          # Backstage backend services
+│
+├── examples/
+│   ├── catalog entities
+│   └── software templates
+│
+├── docs/
+│   ├── backstage-homepage.png
+│   ├── catalog-overview.png
+│   ├── catalog-architecture.png
+│   ├── entity-page.png
+│   └── scaffolder-success.png
+│
+├── app-config.yaml
+├── catalog-info.yaml
+├── package.json
+└── yarn.lock
+```
 
 ---
 
-### Service Dependency Graph
+# Running Locally
 
-Visual representation of service ownership, relationships and platform architecture using the Backstage Catalog Graph.
+## Requirements
 
-![Catalog Graph](docs/catalog-architecture.png)
+Install:
+
+- Node.js
+- Yarn
+- Docker
+- Git
 
 ---
 
-### Service Entity Example
+## Install Dependencies
 
-Example entity registered within the software catalog.
+```bash
+yarn install
+```
+
+---
+
+## Start Backstage
+
+Run:
+
+```bash
+yarn dev
+```
+
+The application will start:
+
+Frontend:
+
+```
+http://localhost:3000
+```
+
+Backend:
+
+```
+http://localhost:7007
+```
+
+---
+
+# Software Catalog
+
+The catalog contains platform components including:
+
+- AZ1600 Developer Platform
+- Observability Platform
+- Terraform EKS Platform
+- GitOps Platform
+
+Each entity provides:
+
+- Ownership information
+- Lifecycle status
+- Dependencies
+- API relationships
+- Architecture visualization
+
+---
+
+# Developer Workflow
+
+A typical developer workflow:
+
+```
+Developer
+    |
+    |
+Backstage Portal
+    |
+    |
+Create Service Template
+    |
+    |
+Generate Repository
+    |
+    |
+Register Component
+    |
+    |
+Deploy Application
+```
+
+---
+
+# Platform Screenshots
+
+## Backstage Homepage
+
+![Backstage Homepage](docs/backstage-homepage.png)
+
+
+---
+
+## Software Catalog
+
+![Catalog Overview](docs/catalog-overview.png)
+
+
+---
+
+## Catalog Architecture Graph
+
+![Catalog Architecture](docs/catalog-architecture.png)
+
+
+---
+
+## Entity Management
 
 ![Entity Page](docs/entity-page.png)
 
 
-## Platform Catalog Architecture
+---
 
-The Backstage Catalog Graph models the relationship between the Platform Engineering domain, the Internal Developer Platform, platform services, APIs, and shared infrastructure resources.
+## Self-Service Software Creation
 
-![Platform Catalog Architecture](docs/catalog-architecture.png)
-
-## Skills Demonstrated
-
-### Platform Engineering
-
-* Internal Developer Platform Design
-* Developer Self-Service
-* Service Catalog Management
-* Platform Governance
-* Developer Experience Optimization
-
-### Cloud & DevOps
-
-* Containerization
-* Kubernetes Integration
-* GitHub Integration
-* Platform Automation
-* Technical Documentation Management
+![Scaffolder Success](docs/scaffolder-success.png)
 
 ---
 
-## Project Outcomes
+# Future Roadmap
 
-This project demonstrates the ability to:
+Planned platform improvements:
 
-* Build Internal Developer Platforms
-* Improve Developer Experience
-* Centralize Software Catalog Management
-* Integrate Engineering Tooling
-* Enable Self-Service Platform Capabilities
-* Standardize Development Workflows
-* Implement Platform Engineering Best Practices
+## Kubernetes Production Integration
 
----
+- Connect real AWS EKS clusters
+- Enable workload visibility
+- Add deployment information
 
-## Repository Structure
+## GitOps Integration
 
-```text
-.
-├── packages/
-│   ├── app/
-│   └── backend/
-├── plugins/
-├── catalog-info.yaml
-├── app-config.yaml
-├── package.json
-└── README.md
-```
+- ArgoCD integration
+- Automated deployment workflows
+- Environment promotion
 
----
+## CI/CD Automation
 
-## Future Enhancements
+- GitHub Actions templates
+- Security scanning
+- Automated testing pipelines
 
-* Software Templates
-* Scaffolder Workflows
-* Kubernetes Resource Management
-* CI/CD Integrations
-* Observability Integrations
-* Cost Visibility Dashboards
-* Internal Platform APIs
+## Platform Governance
+
+- Role-based access control
+- Service ownership policies
+- Compliance automation
+
+## Observability
+
+- Prometheus integration
+- Grafana dashboards
+- Application health monitoring
 
 ---
 
-## Why This Project Matters
+# Engineering Principles
 
-Modern engineering organizations increasingly adopt Internal Developer Platforms to improve developer productivity and operational consistency.
+The AZ1600 Platform Engineering Developer Portal follows:
 
-This project demonstrates how Backstage can be used as a central platform layer that provides visibility, governance, self-service capabilities, and standardized workflows across engineering teams.
+- Golden path engineering
+- Automation first
+- Self-service workflows
+- Infrastructure as Code
+- Developer experience optimization
+- Cloud-native architecture
 
 ---
 
-## Author
+# License
 
-**Olawale Azeez**
+Internal Platform Engineering Project.
+
+Built for improving developer productivity and engineering standards.
+
+
+👨‍💻 Author
+
+Olawale Azeez
 
 Cloud Engineer | Platform Engineer | AWS Solutions Architect
 
 Focused on Platform Engineering, Internal Developer Platforms, Kubernetes, Cloud Infrastructure, and Developer Experience.
+
+🌐 Portfolio: https://az1600.github.io
+
+💻 GitHub: AZ1600
