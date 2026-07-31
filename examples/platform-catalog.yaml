@@ -3,20 +3,52 @@ kind: Domain
 metadata:
   name: platform-engineering
   title: Platform Engineering
-  description: Internal platforms, cloud infrastructure, developer experience, GitOps, and observability capabilities.
+  description: Internal platforms, cloud infrastructure, developer experience, GitOps, observability, and automation capabilities.
 spec:
   owner: group:default/platform-team
 
 ---
 apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: application-delivery
+  title: Application Delivery
+  description: Software delivery, CI/CD automation, developer workflows, and application lifecycle management.
+spec:
+  owner: group:default/platform-team
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: cloud-platform
+  title: Cloud Platform
+  description: AWS infrastructure, Kubernetes, Terraform, and cloud automation capabilities.
+spec:
+  owner: group:default/platform-team
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: security-engineering
+  title: Security Engineering
+  description: Security automation, compliance, secrets management, and DevSecOps capabilities.
+spec:
+  owner: group:default/platform-team
+
+
+---
+apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: internal-developer-platform
-  title: Internal Developer Platform
-  description: Developer self-service, software catalogue, documentation, Kubernetes visibility, and delivery workflows.
+  name: az1600-platform-engineering
+  title: AZ1600 Platform Engineering Platform
+  description: Internal developer platform providing service discovery, documentation, Kubernetes visibility, GitOps workflows, and developer self-service.
 spec:
   owner: group:default/platform-team
   domain: platform-engineering
+
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -35,12 +67,13 @@ spec:
   type: website
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
   consumesApis:
     - github-api
     - kubernetes-api
   dependsOn:
     - resource:default/eks-cluster
+
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -59,11 +92,12 @@ spec:
   type: service
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
   consumesApis:
     - kubernetes-api
   dependsOn:
     - resource:default/eks-cluster
+
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -82,7 +116,7 @@ spec:
   type: service
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
   providesApis:
     - monitoring-api
   dependsOn:
@@ -90,13 +124,14 @@ spec:
     - resource:default/grafana
     - resource:default/eks-cluster
 
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: terraform-eks-platform
   title: Terraform EKS Platform
-  description: AWS and Kubernetes infrastructure provisioned with Terraform.
+  description: AWS and Kubernetes infrastructure provisioned using Terraform.
   annotations:
     github.com/project-slug: AZ1600/platform-engineering-terraform-eks
   tags:
@@ -107,11 +142,49 @@ spec:
   type: service
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
   providesApis:
     - kubernetes-api
   dependsOn:
     - resource:default/eks-cluster
+
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cicd-platform
+  title: CI/CD Platform
+  description: Automated build, testing, release, and deployment workflows.
+  tags:
+    - github-actions
+    - cicd
+    - automation
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/platform-team
+  system: az1600-platform-engineering
+
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: security-platform
+  title: Security Engineering Platform
+  description: DevSecOps capabilities including security automation, compliance, and secrets management.
+  tags:
+    - security
+    - devsecops
+    - compliance
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/platform-team
+  system: az1600-platform-engineering
+
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
@@ -123,7 +196,7 @@ spec:
   type: openapi
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
   definition: |
     openapi: 3.0.0
     info:
@@ -131,13 +204,14 @@ spec:
       version: 1.0.0
     paths: {}
 
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: kubernetes-api
   title: Kubernetes API
-  description: Kubernetes control-plane API used for deployment and workload visibility.
+  description: Kubernetes control plane API used for deployment and workload visibility.
   tags:
     - kubernetes
     - platform
@@ -145,13 +219,14 @@ spec:
   type: openapi
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
   definition: |
     openapi: 3.0.0
     info:
       title: Kubernetes Platform API
       version: 1.0.0
     paths: {}
+
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -167,7 +242,7 @@ spec:
   type: openapi
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
   definition: |
     openapi: 3.0.0
     info:
@@ -175,13 +250,14 @@ spec:
       version: 1.0.0
     paths: {}
 
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: eks-cluster
   title: Amazon EKS Cluster
-  description: Kubernetes cluster provisioned by the Terraform EKS platform.
+  description: Kubernetes cluster provisioned by Terraform.
   tags:
     - aws
     - eks
@@ -190,7 +266,8 @@ spec:
   type: kubernetes-cluster
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
+
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -198,7 +275,7 @@ kind: Resource
 metadata:
   name: prometheus
   title: Prometheus
-  description: Metrics collection and alerting resource for platform workloads.
+  description: Metrics collection and alerting platform resource.
   tags:
     - prometheus
     - monitoring
@@ -206,7 +283,8 @@ spec:
   type: monitoring
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering
+
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -214,7 +292,7 @@ kind: Resource
 metadata:
   name: grafana
   title: Grafana
-  description: Dashboard and visualisation resource for platform metrics.
+  description: Dashboard and visualization platform resource.
   tags:
     - grafana
     - dashboards
@@ -222,4 +300,4 @@ spec:
   type: dashboard
   lifecycle: production
   owner: group:default/platform-team
-  system: internal-developer-platform
+  system: az1600-platform-engineering

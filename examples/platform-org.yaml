@@ -1,26 +1,35 @@
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: platform-team
-  title: Platform Team
-  description: Team responsible for the internal developer platform, cloud infrastructure, GitOps, and observability.
-spec:
-  type: team
-  profile:
-    displayName: Platform Team
-  children: []
-  members:
-    - olawale-azeez
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
-  name: olawale-azeez
-  title: Olawale Azeez
+  name: guest
 spec:
-  profile:
-    displayName: Olawale Azeez
-    email: azeezolawale1600@gmail.com
   memberOf:
-    - platform-team
+    - guests
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: guests
+  description: Default guest users
+
+spec:
+  type: team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: platform-team
+  description: AZ1600 Platform Engineering Team
+
+spec:
+  type: team
+
+  profile:
+    displayName: Platform Engineering
+    email: platform@az1600.com
+
+  children: []
