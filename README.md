@@ -1,7 +1,3 @@
-<p align="center">
-<img src="./docs/backstage-homepage.png" width="900"/>
-</p>
-
 # AZ1600 Platform Engineering Developer Portal
 
 ![Backstage](https://img.shields.io/badge/Platform-Backstage-blue)
