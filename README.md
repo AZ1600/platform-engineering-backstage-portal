@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./docs/backstage-homepage.png" width="900"/>
+</p>
+
 # AZ1600 Platform Engineering Developer Portal
 
 ![Backstage](https://img.shields.io/badge/Platform-Backstage-blue)
@@ -9,7 +13,6 @@
 ## Overview
 
 The **AZ1600 Platform Engineering Developer Portal** is an Internal Developer Platform (IDP) built using **Backstage**.
-
 The platform provides developers with a centralized experience for:
 
 - Discovering software services
