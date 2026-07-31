@@ -1,7 +1,24 @@
 <p align="center">
-  <img src="./docs/backstage-homepage.png" width="900"/>
+  <img src="./docs/backstage-homepage.png" width="750"/>
 </p>
 
+<h1 align="center">
+AZ1600 Platform Engineering Developer Portal
+</h1>
+
+<p align="center">
+  Internal Developer Platform built with Backstage
+</p>
+
+<p align="center">
+
+![Backstage](https://img.shields.io/badge/Platform-Backstage-blue)
+![React](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-blue)
+![Kubernetes](https://img.shields.io/badge/Runtime-Kubernetes-blue)
+![AWS](https://img.shields.io/badge/Cloud-AWS-orange)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-purple)
+
+</p>
 # AZ1600 Platform Engineering Developer Portal
 
 ![Backstage](https://img.shields.io/badge/Platform-Backstage-blue)
@@ -13,14 +30,14 @@
 ## Overview
 
 The **AZ1600 Platform Engineering Developer Portal** is an Internal Developer Platform (IDP) built using **Backstage**.
+
 The platform provides developers with a centralized experience for:
 
 - Discovering software services
 - Managing ownership and metadata
 - Accessing technical documentation
-- Creating new applications through self-service workflows
-- Understanding platform architecture and dependencies
-- Integrating cloud-native development practices
+- Creating new services through golden paths
+- Integrating Kubernetes and cloud workflows
 
 The goal of this platform is to improve developer experience, standardize engineering workflows, and reduce operational complexity through automation.
 
