@@ -1,4 +1,5 @@
 # AZ1600 Platform Engineering Developer Portal
+A Backstage-based Internal Developer Platform demonstrating software catalog management, developer self-service, golden paths, service ownership, and cloud-native platform engineering practices.
 
 ![Backstage](https://img.shields.io/badge/Platform-Backstage-blue)
 ![React](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-blue)
