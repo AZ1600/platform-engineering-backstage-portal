@@ -808,7 +808,7 @@ Built to demonstrate Internal Developer Platform concepts, developer self-servic
 
 **Olawale Azeez**
 
-Cloud Engineer | Platform Engineer | AWS Solutions Architect
+Cloud Engineer | Platform Engineer | AWS Certified Developer
 
 Focused on Platform Engineering, Internal Developer Platforms, Kubernetes, Cloud Infrastructure, Infrastructure as Code, and Developer Experience.
 
