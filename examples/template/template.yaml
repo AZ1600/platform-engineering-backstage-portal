@@ -1,13 +1,17 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
+
 metadata:
   name: production-service-template
-  title: Create a Production-Ready Service
-  description: Create a new service repository with source code, Docker support, CI, Kubernetes manifests, TechDocs, and Backstage catalog registration.
+  title: Create a Production-Ready FastAPI Service
+  description: Create a production-ready Python FastAPI service with Docker support, CI, Kubernetes manifests, TechDocs, and Backstage catalog registration.
   tags:
     - platform-engineering
     - self-service
     - golden-path
+    - python
+    - fastapi
+
 spec:
   owner: group:default/platform-team
   type: service
@@ -42,22 +46,10 @@ spec:
               kind:
                 - Group
 
-    - title: Runtime and deployment
+    - title: Deployment
       required:
-        - runtime
         - environment
       properties:
-        runtime:
-          title: Runtime
-          type: string
-          default: nodejs
-          enum:
-            - nodejs
-            - python
-          enumNames:
-            - Node.js
-            - Python FastAPI
-
         environment:
           title: Initial environment
           type: string
@@ -86,7 +78,7 @@ spec:
 
   steps:
     - id: fetch-base
-      name: Generate service files
+      name: Generate FastAPI service files
       action: fetch:template
       input:
         url: ./content
@@ -94,7 +86,6 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
-          runtime: ${{ parameters.runtime }}
           environment: ${{ parameters.environment }}
           enableMonitoring: ${{ parameters.enableMonitoring }}
 
@@ -121,7 +112,7 @@ spec:
         recipients: entity
         entityRefs:
           - ${{ parameters.owner }}
-        title: New service created
+        title: New FastAPI service created
         info: ${{ parameters.name }} was created and registered in the software catalog.
         severity: normal
 

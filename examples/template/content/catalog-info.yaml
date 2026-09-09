@@ -9,7 +9,8 @@ metadata:
     backstage.io/techdocs-ref: dir:.
   tags:
     - generated-service
-    - ${{ values.runtime }}
+    - python
+    - fastapi
 
 spec:
   type: service
