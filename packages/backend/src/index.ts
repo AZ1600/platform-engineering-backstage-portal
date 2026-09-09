@@ -24,9 +24,7 @@ backend.add(import('@backstage/plugin-techdocs-backend'));
 
 // Auth
 backend.add(import('@backstage/plugin-auth-backend'));
-backend.add(
-  import('@backstage/plugin-auth-backend-module-guest-provider'),
-);
+backend.add(import('@backstage/plugin-auth-backend-module-guest-provider'));
 
 // Permissions
 backend.add(import('@backstage/plugin-permission-backend'));
@@ -46,6 +44,5 @@ backend.add(import('@backstage/plugin-signals-backend'));
 
 // MCP
 backend.add(import('@backstage/plugin-mcp-actions-backend'));
-
 
 backend.start();

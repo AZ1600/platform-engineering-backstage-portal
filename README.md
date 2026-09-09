@@ -297,20 +297,20 @@ Real production EKS, GitOps, and observability integrations are planned extensio
 
 # Technology Stack
 
-| Area | Technology |
-|---|---|
-| Developer Portal | Backstage |
-| Frontend | React + TypeScript |
-| Backend | Node.js |
-| Database | SQLite |
-| Documentation | Backstage TechDocs |
-| Software Templates | Backstage Scaffolder |
-| Source Control | GitHub |
-| Cloud Target | AWS |
-| Container Platform Target | Kubernetes / Amazon EKS |
-| Infrastructure as Code Target | Terraform |
-| GitOps Target | Argo CD |
-| Observability Target | Prometheus / Grafana |
+| Area                          | Technology              |
+| ----------------------------- | ----------------------- |
+| Developer Portal              | Backstage               |
+| Frontend                      | React + TypeScript      |
+| Backend                       | Node.js                 |
+| Database                      | SQLite                  |
+| Documentation                 | Backstage TechDocs      |
+| Software Templates            | Backstage Scaffolder    |
+| Source Control                | GitHub                  |
+| Cloud Target                  | AWS                     |
+| Container Platform Target     | Kubernetes / Amazon EKS |
+| Infrastructure as Code Target | Terraform               |
+| GitOps Target                 | Argo CD                 |
+| Observability Target          | Prometheus / Grafana    |
 
 ---
 
