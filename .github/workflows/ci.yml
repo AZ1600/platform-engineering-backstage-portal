@@ -1,0 +1,51 @@
+name: Backstage CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  CI: 'true'
+
+jobs:
+  validate:
+    name: Format, lint, typecheck, test, and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Check formatting
+        run: yarn prettier:check
+
+      - name: Run lint
+        run: yarn lint:all
+
+      - name: Run TypeScript validation
+        run: yarn tsc:full
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Build all workspaces
+        run: yarn build:all
