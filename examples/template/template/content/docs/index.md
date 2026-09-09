@@ -5,7 +5,7 @@ ${{ values.description }}
 ## Service information
 
 - Owner: `${{ values.owner }}`
-- Runtime: `${{ values.runtime }}`
+- Runtime: `Python 3.12 / FastAPI`
 - Environment: `${{ values.environment }}`
 - Monitoring enabled: `${{ values.enableMonitoring }}`
 
