@@ -11,10 +11,10 @@ ${{ values.description }}
 
 ## Endpoints
 
-| Endpoint | Purpose |
-|---|---|
-| `/` | Returns basic service information |
-| `/health` | Reports application health |
+| Endpoint  | Purpose                           |
+| --------- | --------------------------------- |
+| `/`       | Returns basic service information |
+| `/health` | Reports application health        |
 
 ## Generated capabilities
 

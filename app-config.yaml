@@ -11,10 +11,8 @@ app:
         config:
           path: /
 
-
 organization:
   name: AZ1600 Platform Engineering
-
 
 backend:
   baseUrl: http://localhost:7007
@@ -25,8 +23,8 @@ backend:
   csp:
     connect-src:
       - "'self'"
-      - "http:"
-      - "https:"
+      - 'http:'
+      - 'https:'
 
   cors:
     origin: http://localhost:3000
@@ -50,12 +48,10 @@ backend:
       - catalog
       - scaffolder
 
-
 integrations:
   github:
     - host: github.com
       token: ${GITHUB_TOKEN}
-
 
 techdocs:
   builder: local
@@ -66,7 +62,6 @@ techdocs:
   publisher:
     type: local
 
-
 auth:
   environment: development
 
@@ -74,9 +69,7 @@ auth:
     guest:
       dangerouslyAllowOutsideDevelopment: true
 
-
 scaffolder: {}
-
 
 catalog:
   import:
@@ -119,7 +112,6 @@ catalog:
         - allow:
             - Template
 
-
 # Kubernetes configuration.
 #
 # Replace YOUR_EKS_CLUSTER_ENDPOINT only after your AWS CLI credentials work
@@ -137,10 +129,8 @@ kubernetes:
           skipTLSVerify: false
           skipMetricsLookup: true
 
-
 permission:
   enabled: true
-
 
 mcpActions:
   name: AZ1600 Developer Platform

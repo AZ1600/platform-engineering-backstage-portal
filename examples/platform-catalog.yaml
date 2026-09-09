@@ -37,7 +37,6 @@ metadata:
 spec:
   owner: group:default/platform-team
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
@@ -48,7 +47,6 @@ metadata:
 spec:
   owner: group:default/platform-team
   domain: platform-engineering
-
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -74,7 +72,6 @@ spec:
   dependsOn:
     - resource:default/eks-cluster
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -97,7 +94,6 @@ spec:
     - kubernetes-api
   dependsOn:
     - resource:default/eks-cluster
-
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -124,7 +120,6 @@ spec:
     - resource:default/grafana
     - resource:default/eks-cluster
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -148,7 +143,6 @@ spec:
   dependsOn:
     - resource:default/eks-cluster
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -166,7 +160,6 @@ spec:
   owner: group:default/platform-team
   system: az1600-platform-engineering
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -183,7 +176,6 @@ spec:
   lifecycle: production
   owner: group:default/platform-team
   system: az1600-platform-engineering
-
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -203,7 +195,6 @@ spec:
       title: GitHub Integration API
       version: 1.0.0
     paths: {}
-
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -227,7 +218,6 @@ spec:
       version: 1.0.0
     paths: {}
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
@@ -250,7 +240,6 @@ spec:
       version: 1.0.0
     paths: {}
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -268,7 +257,6 @@ spec:
   owner: group:default/platform-team
   system: az1600-platform-engineering
 
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -284,7 +272,6 @@ spec:
   lifecycle: production
   owner: group:default/platform-team
   system: az1600-platform-engineering
-
 
 ---
 apiVersion: backstage.io/v1alpha1
