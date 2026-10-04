@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
@@ -16,9 +17,9 @@ env:
 
 jobs:
   validate:
-    name: Format, lint, typecheck, test, and build
+    name: Validate Backstage platform
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Check out repository
@@ -47,5 +48,57 @@ jobs:
       - name: Run tests
         run: yarn test
 
-      - name: Build all workspaces
-        run: yarn build:all
+      - name: Validate catalog model
+        run: yarn validate:catalog
+
+      - name: Validate production configuration
+        env:
+          GITHUB_TOKEN: dummy
+          BACKSTAGE_BASE_URL: http://localhost:7007
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: '5432'
+          POSTGRES_USER: backstage
+          POSTGRES_PASSWORD: dummy
+          POSTGRES_DATABASE: backstage
+          AUTH_GITHUB_CLIENT_ID: dummy
+          AUTH_GITHUB_CLIENT_SECRET: dummy
+        run: |
+          yarn backstage-cli config:check --strict \
+            --config app-config.yaml \
+            --config app-config.production.yaml
+
+      - name: Build Backstage backend
+        run: yarn build:backend
+
+      - name: Build production container
+        run: |
+          docker build \
+            --file packages/backend/Dockerfile \
+            --tag backstage-portal:ci \
+            .
+
+      - name: Verify Backstage container runs as non-root
+        run: |
+          docker run \
+            --rm \
+            --entrypoint id \
+            backstage-portal:ci \
+            | grep 'uid=1000(node)'
+
+      - name: Scan golden-path infrastructure
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: config
+          scan-ref: examples/template/content
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          hide-progress: true
+
+      - name: Scan Backstage production image
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: backstage-portal:ci
+          format: table
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
