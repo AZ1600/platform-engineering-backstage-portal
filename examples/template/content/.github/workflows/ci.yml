@@ -4,14 +4,22 @@ on:
   push:
     branches:
       - main
+
   pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
 
+env:
+  IMAGE_NAME: ${{ values.name }}:ci
+
 jobs:
   test-and-build:
+    name: Test, build, and scan
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -26,8 +34,28 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Compile Python source
+        run: python -m compileall -q app tests
+
       - name: Run tests
-        run: PYTHONPATH=. pytest
+        run: PYTHONPATH=. pytest -q
 
       - name: Build Docker image
-        run: docker build -t ${{ values.name }}:ci .
+        run: docker build -t "$IMAGE_NAME" .
+
+      - name: Verify container runs as non-root
+        run: |
+          docker run \
+            --rm \
+            --entrypoint id \
+            "$IMAGE_NAME" \
+            | grep 'uid=10001'
+
+      - name: Scan container image
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: '${{ values.name }}:ci'
+          format: table
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
