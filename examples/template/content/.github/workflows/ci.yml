@@ -52,7 +52,7 @@ jobs:
             | grep 'uid=10001'
 
       - name: Scan container image
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: '${{ values.name }}:ci'
           format: table

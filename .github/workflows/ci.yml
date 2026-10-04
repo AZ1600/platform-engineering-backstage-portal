@@ -86,7 +86,7 @@ jobs:
             | grep 'uid=1000(node)'
 
       - name: Scan golden-path infrastructure
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: config
           scan-ref: examples/template/content
@@ -95,7 +95,7 @@ jobs:
           hide-progress: true
 
       - name: Scan Backstage production image
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: backstage-portal:ci
           format: table
