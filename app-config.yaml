@@ -2,10 +2,8 @@ app:
   title: AZ1600 Platform Engineering
   baseUrl: http://localhost:3000
 
-  # Automatically discovers installed frontend plugins.
   packages: all
 
-  # Make the Backstage Home plugin the landing page.
   extensions:
     - page:home:
         config:
@@ -66,8 +64,8 @@ auth:
   environment: development
 
   providers:
-    guest:
-      dangerouslyAllowOutsideDevelopment: true
+    # Guest authentication is intentionally restricted to local development.
+    guest: {}
 
 scaffolder: {}
 
@@ -112,10 +110,6 @@ catalog:
         - allow:
             - Template
 
-# Kubernetes configuration.
-#
-# Replace YOUR_EKS_CLUSTER_ENDPOINT only after your AWS CLI credentials work
-# and you have retrieved the real EKS endpoint.
 kubernetes:
   serviceLocatorMethod:
     type: multiTenant

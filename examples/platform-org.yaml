@@ -9,10 +9,26 @@ spec:
 
 ---
 apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: olawale-azeez
+  title: Olawale Azeez
+  annotations:
+    github.com/user-id: '278994255'
+
+spec:
+  profile:
+    displayName: Olawale Azeez
+
+  memberOf:
+    - platform-team
+
+---
+apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: guests
-  description: Default guest users
+  description: Local development guest users
 
 spec:
   type: team
