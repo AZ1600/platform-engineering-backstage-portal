@@ -21,6 +21,7 @@ ENV PYTHON=/usr/bin/python3
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends python3 g++ build-essential && \
     rm -rf /var/lib/apt/lists/*
 
@@ -59,6 +60,17 @@ RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
 RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
     yarn workspaces focus --all --production && rm -rf "$(yarn cache clean)"
+
+# npm and npx are build-time tooling and are not required to run the
+# Backstage production backend. Removing them reduces the runtime
+# attack surface and removes bundled dependencies that are not used
+# by the application.
+USER root
+
+RUN rm -rf /usr/local/lib/node_modules/npm \
+    && rm -f /usr/local/bin/npm /usr/local/bin/npx
+
+USER node
 
 # This will include the examples, if you don't need these simply remove this line
 COPY --chown=node:node examples ./examples

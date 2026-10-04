@@ -52,7 +52,9 @@
   },
   "resolutions": {
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "undici@npm:7.24.7": "npm:7.30.0",
+    "basic-ftp": "npm:6.2.1"
   },
   "prettier": "@backstage/cli/config/prettier",
   "lint-staged": {
