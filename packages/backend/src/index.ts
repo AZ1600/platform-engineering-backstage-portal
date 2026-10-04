@@ -22,9 +22,13 @@ backend.add(
 // TechDocs
 backend.add(import('@backstage/plugin-techdocs-backend'));
 
-// Auth
+// Authentication
+//
+// Guest authentication remains available for local development.
+// GitHub OAuth is the production sign-in provider.
 backend.add(import('@backstage/plugin-auth-backend'));
 backend.add(import('@backstage/plugin-auth-backend-module-guest-provider'));
+backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
 // Permissions
 backend.add(import('@backstage/plugin-permission-backend'));
