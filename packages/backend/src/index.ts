@@ -31,10 +31,11 @@ backend.add(import('@backstage/plugin-auth-backend-module-guest-provider'));
 backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
 // Permissions
+//
+// The default allow-all module has been replaced by a project-specific
+// authorization policy.
 backend.add(import('@backstage/plugin-permission-backend'));
-backend.add(
-  import('@backstage/plugin-permission-backend-module-allow-all-policy'),
-);
+backend.add(import('./extensions/permissionPolicy'));
 
 // Search
 backend.add(import('@backstage/plugin-search-backend'));
