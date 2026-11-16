@@ -58,8 +58,17 @@ ENV NODE_OPTIONS="--no-node-snapshot"
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
+# OpenAPI test-proxy dependencies are not required by the checked
+# backend imports. Exclude their known vulnerable package locations from
+# the production image during installation rather than in a later layer.
+# Keep the security scan and runtime smoke tests enabled; this is a
+# provisional packaging workaround, not an upstream dependency fix.
 RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
-    yarn workspaces focus --all --production && rm -rf "$(yarn cache clean)"
+    yarn workspaces focus --all --production \
+    && rm -rf \
+        /app/node_modules/mockttp \
+        /app/node_modules/@graphql-tools/utils \
+    && rm -rf "$(yarn cache clean)"
 
 # npm and npx are build-time tooling and are not required to run the
 # Backstage production backend. Removing them reduces the runtime
