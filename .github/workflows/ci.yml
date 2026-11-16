@@ -51,6 +51,11 @@ jobs:
       - name: Validate catalog model
         run: yarn validate:catalog
 
+      - name: Enforce private golden path publishing
+        run: |
+          yarn validate:golden-path
+          yarn test:golden-path
+
       - name: Validate production configuration
         env:
           GITHUB_TOKEN: dummy
