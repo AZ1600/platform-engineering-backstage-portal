@@ -96,7 +96,7 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         description: ${{ parameters.description }}
         defaultBranch: main
-        repoVisibility: public
+        repoVisibility: private
 
     - id: register
       name: Register service in Backstage

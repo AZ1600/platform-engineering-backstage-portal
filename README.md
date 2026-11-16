@@ -265,6 +265,22 @@ examples/template/content/
 
 The template demonstrates how platform standards can be embedded directly into generated services.
 
+**Repository publishing is private by default.** The `publish:github` step explicitly
+sets `repoVisibility: private`, reducing the chance that a newly generated
+service, configuration, or documentation is unintentionally exposed.
+Repository destination selection remains limited to GitHub. The GitHub token
+must also have permission to create private repositories, and organizational
+repository rules still apply. This does not prevent an authorized user from
+changing visibility later through GitHub.
+
+The repository enforces this template contract with an offline validator and
+negative regression tests:
+
+```bash
+yarn validate:golden-path
+yarn test:golden-path
+```
+
 ---
 
 # Secure Golden Path Defaults
@@ -575,6 +591,8 @@ Tests
         ↓
 Catalog semantic validation
         ↓
+Golden-path repository visibility policy + regression tests
+        ↓
 Production configuration validation
         ↓
 Backend build
@@ -608,6 +626,10 @@ yarn tsc:full
 CI=true yarn test
 
 yarn validate:catalog
+
+yarn validate:golden-path
+
+yarn test:golden-path
 
 yarn build:backend
 ```

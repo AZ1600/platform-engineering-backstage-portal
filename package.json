@@ -21,7 +21,9 @@
     "lint:all": "backstage-cli repo lint",
     "prettier:check": "prettier --check .",
     "new": "backstage-cli new",
-    "validate:catalog": "node scripts/validate-catalog.mjs"
+    "validate:catalog": "node scripts/validate-catalog.mjs",
+    "validate:golden-path": "node scripts/validate-golden-path.mjs",
+    "test:golden-path": "node --test tests/validate-golden-path.test.mjs"
   },
   "backstage": {
     "cli": {
